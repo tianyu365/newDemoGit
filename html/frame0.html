@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/auislide.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding: 120px 0; }
+    </style>
+</head>
+<body style="background-color:#fff">
+  <div id="aui-slide">
+    <div id="slidebox" class="aui-slide-wrap">
+
+
+    </div>
+    <div class="aui-slide-page-wrap"><!--分页容器--></div>
+  </div>
+  <div class="gonggao">
+    <div class="list-title-l">
+      <i class="iconfont icon-xitonggonggao" style="color:#585858;font-size: 1rem"></i>
+    </div>
+    <div class="gonggao-r">
+      <span id="gonggao" style="color:#585858;font-size: 0.65rem;padding-top:0.3rem;">VIP影视全新体验，会员任性看</span>
+    </div>
+  </div>
+  
+  
+  <div class="aui-searchbar" id="search" style="background-color:#fff;">
+    <div class="aui-searchbar-input aui-border-radius" >
+        <i class="aui-iconfont aui-icon-search"></i>
+        
+            <input type="text" placeholder="输入影片关键词搜索,播放速度更快" id="ff-wd">
+        
+    </div>
+    <div class="aui-btn aui-btn-info aui-btn-block" tapmode onclick="ss()" style="width:50px;height:30px;line-height:30px;margin-right:5px;">搜索</div>
+</div>
+
+
+
+
+
+  <div class="list-title">
+    <div class="list-title-l">
+      <span style="color:#585858;font-size: 0.7rem"><i class="iconfont icon-zuirehotchunse" style="color:#ff7600;font-size: 0.8rem"></i>VIP 观影区</span>
+    </div>
+	<div class="list-title-r">
+      <span style="color:red;font-size: 0.65rem" onclick="toBanner('http://dtms.xjqxz.top/help.php')">先看观影教程,只需5秒！</span>
+    </div>
+  </div>
+  <section class="aui-grid aui-margin-b-15">
+      <div class="aui-row" id="div_list">
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://tv.youku.com/')">
+          <i class="aui-iconfont"><img src="../image/youku.jpg"/></i>
+          <div class="aui-grid-label">优酷</div>
+        </div>
+		
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.iqiyi.com/vip/')">
+          <i class="aui-iconfont"><img src="../image/aiqiyi.jpg"/></i>
+          <div class="aui-grid-label">爱奇艺</div>
+        </div>
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://v.qq.com')">
+          <i class="aui-iconfont"><img src="../image/tx.png"/></i>
+          <div class="aui-grid-label">腾讯视频</div>
+        </div>
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.mgtv.com/channel/home')">
+          <i class="aui-iconfont"><img src="../image/mgtx.jpg"/></i>
+          <div class="aui-grid-label">芒果TV</div>
+        </div>
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://vip.1905.com/?fr=homeh5_menu_wow')">
+          <i class="aui-iconfont"><img src="../image/1905.jpg"/></i>
+          <div class="aui-grid-label">M1905</div>
+        </div>
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.tv.sohu.com/')">
+          <i class="aui-iconfont"><img src="../image/sohu.jpg"/></i>
+          <div class="aui-grid-label">搜狐视频</div>
+        </div>
+
+		
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.pptv.com/')">
+          <i class="aui-iconfont"><img src="../image/pptv.png"/></i>
+          <div class="aui-grid-label">PPTV</div>
+        </div>
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.le.com/')">
+          <i class="aui-iconfont"><img src="../image/letv.jpg"/></i>
+          <div class="aui-grid-label">乐视视频</div>
+        </div>
+		
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.miguvideo.com/wap/resource/migu/miguH5/channelTpl.jsp?nodeId=70049310')">
+          <i class="aui-iconfont"><img src="../image/miguyy.jpg"/></i>
+          <div class="aui-grid-label">咪咕影院</div>
+        </div>
+
+
+
+
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://www.wasu.cn/wap/')">
+          <i class="aui-iconfont"><img src="../image/huashu.jpg"/></i>
+          <div class="aui-grid-label">华数TV</div>
+        </div>
+
+
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.baofeng.com')">
+          <i class="aui-iconfont"><img src="../image/baofeng.jpg"/></i>
+          <div class="aui-grid-label">暴风影音</div>
+        </div>
+
+
+
+        <!-- <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('http://www.33c.tv/')">
+          <i class="aui-iconfont"><img src="../image/2mm.jpg"/></i>
+          <div class="aui-grid-label">恋恋影视</div>
+        </div> -->
+
+        <!-- <div class="aui-col-xs-3 pt-list" tapmode onclick="openVipurl('http://vip.guangxs.cn')">
+          <i class="aui-iconfont"><img src="../image/vipyc.jpg"/></i>
+          <div class="aui-grid-label">VIP影城</div>
+        </div> -->
+
+        <div class="aui-col-xs-3 pt-list" tapmode onclick="openLive('https://m.fun.tv/')">
+          <i class="aui-iconfont"><img src="../image/fengxing.jpg"/></i>
+          <div class="aui-grid-label">风行</div>
+        </div>
+
+
+
+
+      </div>
+
+  </section>
+
+ 
+
+  <div class="index-b">
+    <img id="bpic" src="../image/ad.png" onclick="imgUrl()">
+  </div>
+  
+   <div id="content"></div>
+   <div id="content1"></div>
+ <!-- 
+  <div class="list-title">
+    <div class="list-title-l">
+      <span style="color:#585858;font-size: 0.7rem">推荐服务</span>
+    </div>
+    <div class="list-title-r">
+      <span style="color:red;font-size: 0.65rem" onclick="toBanner('https://fuli.bianxianmao.com?appKey=b8f956276db24e9dbc01f4fe20fe37f7&appType=h5&appEntrance=1')">福利社！抢></span>
+    </div>
+  </div>
+
+-->
+
+</body>
+<script type="text/x-dot-template" id="bannertpl">
+  {{~ it.msg : value : index }}
+    <div class="aui-slide-node bg-dark" tapmode onclick="toBanner('{{= value. linkurl }}')">
+        <img src="http://dtms.xjqxz.top{{= value. picurl }}" />
+    </div>
+  {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript" src="../script/auilazyload.js" ></script>
+<script type="text/javascript">
+  var imgdz = '';
+var wd = ''
+  var api_url = localStorage.getItem('api_url');
+  apiready = function(){
+    getBanner();
+    api.parseTapmode();
+    api.ajax({
+        url: api_url+'/login/login/imgad.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          //alert( JSON.stringify( ret ) );
+          localStorage.setItem('fxpic1',ret.msg.fxpic1);
+          localStorage.setItem('fxurl1',ret.msg.fxurl1);
+          localStorage.setItem('fxpic2',ret.msg.fxpic2);
+          localStorage.setItem('fxurl2',ret.msg.fxurl2);
+          var bpic = $api.byId('bpic');
+          imgdz = ret.msg.picurl;
+          if (ret.msg.pic!='') {
+            bpic.src = ret.msg.pic;
+          }
+          document.getElementById("bpic").onclick = function(){ imgUrl(); };
+        } else {
+
+
+        }
+    });
+	
+	$api.get('https://kan.duzhiqiang.com/autocxlist/12/1.html',function(ret){ 
+
+                document.getElementById('content').innerHTML = ret;
+
+        },'text');
+	$api.get('https://kan.duzhiqiang.com/autocxlist/12/2.html',function(ret){ 
+
+                document.getElementById('content1').innerHTML = ret;
+
+        },'text');
+
+  }
+
+
+
+  function imgUrl(){
+    api.openWin({
+        name: 'h5',
+        url: './h5.html',
+        pageParam: {
+            url: imgdz
+        }
+    });
+  }
+
+  //打开播放页
+  function openLive(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id<1){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'jiexi_win',
+          url: './jiexi_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'jiexi_win',
+          url: './jiexi_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function openVipurl(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id<1){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function playRadio(){
+    api.hideProgress();
+  }
+
+
+
+  //访问轮播地址
+  function toBanner(url){
+
+    if (url == '') {
+
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: url
+          }
+      });
+    }
+  }
+
+
+  //轮播图获取
+  function getBanner(){
+    var bannerid = $api.byId('slidebox');
+    var bannertpl = $api.byId('bannertpl');
+
+    api.ajax({
+        url: api_url+'/login/login/banben.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          localStorage.setItem('user_advert',ret.advert);
+          var advert = $api.byId('gonggao');
+          advert.innerHTML = localStorage.getItem('user_advert');
+            localStorage.setItem('jx_url1',ret.banben);
+            localStorage.setItem('jx_url2',ret.url);
+            localStorage.setItem('jx_url3',ret.url2);
+            localStorage.setItem('jx_url4',ret.url3);
+            localStorage.setItem('jx_url5',ret.url4);
+            localStorage.setItem('jx_url6',ret.url5);
+            localStorage.setItem('hburl',ret.hburl);
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+    api.ajax({
+        url: api_url+'/login/login/banner.html',
+        method: 'get',
+    },function(ret, err){
+        if (ret) {
+          //渲染模板
+          var pagefn = doT.template(bannertpl.text);
+          bannerid.innerHTML = pagefn(ret);
+          banNer();
+
+        } else {
+            alert( '网络错误' );
+            api.hideProgress();
+        }
+    });
+  }
+
+
+  function openWin(name){
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: ''+name+'',
+          url: ''+name+'.html',
+          bounces:false,
+          delay: delay,
+          slidBackEnabled:true,
+          vScrollBarEnabled:false
+      });
+  }
+
+  //幻灯轮播图
+  function banNer(){
+    var slide = new auiSlide({
+        container:document.getElementById("aui-slide"),
+        // "width":300,
+        "height":150,
+        "speed":300,
+        "pageShow":true,
+        "autoPlay": 5000,
+        "pageStyle":'dot',
+        "loop":true,
+        'dotPosition':'center',
+    });
+  }
+
+  new auiLazyload({
+      errorImage:'../image/error-img.jpg'
+  });
+
+function ss(){
+            
+            var wd = $api.val($api.byId('ff-wd'));
+			api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: 'https://kan.duzhiqiang.com/search/' + wd + '.html'
+            }
+        });
+
+
+
+
+       
+    }
+
+
+</script>
+</html>

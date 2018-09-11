@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/auislide.css" />
+</head>
+<body>
+  <div id="aui-slide">
+    <div id="slidebox" class="aui-slide-wrap">
+      <div class="aui-slide-node bg-dark">
+          <img src="../image/zbad1.png" />
+      </div>
+
+      <div class="aui-slide-node bg-dark">
+          <img src="../image/zbad2.png" />
+      </div>
+    </div>
+    <div class="aui-slide-page-wrap"></div>
+  </div>
+  <div class="wrap">
+    <!-- 游戏 -->
+    <div class="game-page">
+      <!-- 游戏列表 -->
+      <div class="game-list-wrap" id="gameList">
+        <ul class="clearfix" id="div_list">
+          <li>
+            <div class="game-a" onclick="tvList()">
+              <img src="../image/tvzb.png" alt="">
+              <p class="game-list-name">电视直播</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- 游戏列表 end-->
+
+    </div>
+    <!-- 游戏 end-->
+  </div>
+</body>
+<script type="text/x-dot-template" id="template">
+{{~ it : value : index }}
+    <li>
+      <div class="game-a" onclick="openWin('{{= value. id }}')">
+        <img src="{{= value. img }}" alt="">
+        <p class="game-list-name">{{= value. name }}</p>
+      </div>
+    </li>
+{{~}}
+</script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript">
+var slide = new auiSlide({
+    container:document.getElementById("aui-slide"),
+    // "width":300,
+    "height":160,
+    "speed":350,
+    "pageShow":true,
+    "autoPlay": 5000,
+    "pageStyle":'dot',
+    "loop":true,
+    'dotPosition':'center',
+});
+  var api_url = localStorage.getItem('api_url');
+  var i = 1;
+  apiready = function(){
+    getList();
+
+
+
+  }
+
+  function getList(){
+    i = 1;
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: 'http://dtms.xjqxz.top/api/gamezhibo.php',
+        method: 'get',
+        data: {
+            values: {
+                lx: 'hqpt',
+                ys:1
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            //alert( JSON.stringify( ret ) );
+            var pagefn = doT.template(template.text);
+            div_list.innerHTML += pagefn(ret);
+            showData();
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+
+  }
+
+  function showData(){
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: 'http://dtms.xjqxz.top/api/gamezhibo.php',
+        method: 'get',
+        data: {
+            values: {
+                lx: 'hqpt',
+                ys:2
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            //alert( JSON.stringify( ret ) );
+            var pagefn = doT.template(template.text);
+            div_list.innerHTML += pagefn(ret);
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+  }
+  function tvList(){
+    var delay = 0;
+    if(api.systemType != 'ios'){
+        delay = 300;
+    }
+    api.openWin({
+        name: 'tv_list_win',
+        url: 'tv_list_win.html',
+        bounces:false,
+        delay: delay,
+        slidBackEnabled:true,
+        vScrollBarEnabled:false,
+    });
+  }
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: 'zhubo_list_win',
+            url: 'zhubo_list_win.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false,
+            pageParam:{id:name}
+        });
+    }
+</script>
+</html>

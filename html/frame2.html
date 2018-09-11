@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>VIP影视</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/auislide.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding: 120px 0; }
+		  .items-box {
+	padding: .5rem;
+	padding-bottom: 0;
+	background: #efeff4
+}
+
+.items-box .item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	padding-bottom: .5rem;
+	height: 5rem
+}
+
+.items-box .item-left {
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
+	padding: .75rem .5rem .75rem .5rem;
+	width: 4rem;
+	border-radius: .3rem;
+	border-right: 1px dotted #ebebeb;
+	background: #fff
+}
+
+.items-box .item-left img {
+	width: 100%;
+	border-radius: .2rem
+}
+
+.items-box .item-right {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-flex: 1;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	-webkit-box-direction: normal;
+	-webkit-box-orient: vertical;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	width: 100%;
+	padding: .75rem .5rem .75rem .5rem;
+	border-radius: .3rem;
+	background: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+
+.items-box .item-right .item-title {
+	font-size: .7rem;
+	color: #333
+}
+
+.items-box .item-right .item-subtitle {
+	font-size: .7rem;
+	color: #ff4f2c;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+
+.items-box .item-right .item-content {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	font-size: .6rem;
+	color: #bababa
+}
+    </style>
+</head>
+<body>
+  <div>
+<img src="" id="fximg1" tapmode onclick="toBanner(topurl)" style="width:100%;">
+
+ </div>
+<div class="items-box" id="jbody"></div>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/auipullrefresh.js"></script>
+<script type="text/javascript" src="../script/auislide.js"></script>
+<script type="text/javascript" src="../script/auilazyload.js" ></script>
+<script type="text/javascript">
+var topurl=localStorage.getItem('fxurl1');
+
+  apiready = function(){
+    api.parseTapmode();
+	document.getElementById("fximg1").src = localStorage.getItem('fxpic1');
+  
+	$api.get('https://dtms.xjqxz.top/fuli/',function(rets){ 
+
+                document.getElementById('jbody').innerHTML = rets;
+
+        },'text');
+
+  }
+
+
+
+
+  //访问轮播地址
+  function toBanner(url){
+
+    if (url == '') {
+
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: url
+          }
+      });
+    }
+  }
+
+
+
+
+</script>
+
+</html>

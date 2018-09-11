@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body class="login-bg2">
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color:rgba(0,0,0,0) !important">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>
+      </a>
+      <div id="title" class="aui-title">注册</div>
+  </header>
+
+
+  <div class="myui-from">
+    <ul class="myui-from-list">
+      <li class="myui-from-list-item">
+        <div class="myui-code">
+          <input id="username" type="tel"  minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-list-item-input">
+          
+        </div>
+      </li>
+      <li class="myui-from-list-item">
+        <input id="yzcode" type="password"  placeholder="设置密码" class="myui-from-list-item-input">
+      </li>
+      <li class="myui-from-list-item">
+        <input id="password" type="password" placeholder="再次输入密码" class="myui-from-list-item-input">
+      </li>
+      <!-- <li class="myui-from-list-item">
+        <input id="share" type="tel" minlength="6" maxlength="6" placeholder="邀请码(选填)" class="myui-from-list-item-input">
+      </li> -->
+      <li class="myui-from-list-item">
+        <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onclick="toReg()">立即注册</button>
+      </li>
+    </ul>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    var api_url = localStorage.getItem('api_url');
+    var onoff = true;
+    var code_data = '';
+    var user = '';
+    var pass = '';
+    apiready = function () {
+      api.parseTapmode();
+      var header = $api.byId('aui-header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+
+    }
+
+
+
+
+    //去注册
+    function toReg(){
+      var username = $api.val($api.byId('username'));
+      var password = $api.val($api.byId('password'));
+      var yzcode = $api.val($api.byId('yzcode'));
+      var share = $api.val($api.byId('share'));
+      if(username == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入登录账号',
+        });
+        return;
+      }
+      if(password == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入密码',
+        });
+        return;
+      }
+
+
+      if(username.length < 6){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入6位以上密码',
+        });
+        return;
+      }
+     if(yzcode != password){
+        api.alert({
+            title: '错误提示',
+            msg: '您两次输入的密码不一致！',
+        });
+        return;
+      } 
+      
+      user = $api.val($api.byId('username'));
+      pass = $api.val($api.byId('password'));
+      api.showProgress({
+          title: '注册中...',
+          text: '请稍等...',
+          modal: false
+      });
+      api.ajax({
+          url: 'http://dtms.xjqxz.top/login/login/create.html',
+          method: 'get',
+          data: {
+              values: {
+                  name: username,
+                  password:password
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+              if (ret.code == 0) {
+                api.hideProgress();
+                api.alert({
+                    title: '错误~',
+                    msg: ret.msg,
+                });
+              }else {
+
+                api.hideProgress();
+                api.alert({
+                    title: '注册成功！',
+                    msg: '当前身份：体验会员',
+                });
+                api.closeWin({
+                    name: 'login'
+                });
+                //openLogin();
+
+
+                api.ajax({
+                    url: 'http://dtms.xjqxz.top/login/login/veifys.html',
+                    method: 'get',
+                    data: {
+                        values: {
+                            username: username,
+                            passwd: password,
+                            imei:api.deviceId
+                        }
+                    }
+                },function(ret, err){
+                    if (ret) {
+                      if (ret.code == 0) {
+                        api.hideProgress();
+                        alert('账号或密码不正确');
+                        return;
+                      }else if (ret.code == 1) {
+                        //alert( JSON.stringify( ret ) );
+                          localStorage.setItem('user_id',ret.msg['id']);
+                          localStorage.setItem('user_name',username);
+                          localStorage.setItem('password',password);
+                          localStorage.setItem('user_time',ret.msg['time']);
+                          localStorage.setItem('user_share',ret.msg['share']);
+                          localStorage.setItem('user_advert',ret.msg['advert']);
+                          localStorage.setItem('user_code',ret.msg['code']);
+                          localStorage.setItem('user_weichat',ret.msg['weichat']);
+                          localStorage.setItem('url',ret.msg['url']);
+                          localStorage.setItem('url1',ret.msg['url1']);
+                          localStorage.setItem('url2',ret.msg['url2']);
+                          localStorage.setItem('url3',ret.msg['url3']);
+                          localStorage.setItem('url4',ret.msg['url4']);
+                          api.sendEvent({
+                            name: 'newLoingdata',
+                            extra: {
+                            }
+                          });
+
+
+                          api.hideProgress();
+                          //alert('登录成功');
+
+                          api.closeWin();
+                      }
+                    } else {
+                      api.hideProgress();
+                      alert('网络错误！');
+                      //alert( JSON.stringify( err ) );
+                      return;
+                    }
+                });
+
+
+                api.closeWin();
+              }
+          } else {
+            api.hideProgress();
+            api.alert({
+                title: '糟糕~',
+                msg: '网络错误！',
+            });
+          }
+      });
+    }
+
+    //页面传参
+    function openLogin(){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+
+
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            pageParam:{user:user,pass:pass},
+        });
+    }
+
+
+
+    function closeWin(){
+        api.closeWin({
+        });
+    }
+
+    function openWin(name){
+          var delay = 0;
+          if(api.systemType != 'ios'){
+              delay = 300;
+          }
+          api.openWin({
+              name: ''+name+'',
+              url: ''+name+'.html',
+              bounces:false,
+              delay: delay,
+              slidBackEnabled:true,
+              vScrollBarEnabled:false
+          });
+      }
+</script>
+</html>
